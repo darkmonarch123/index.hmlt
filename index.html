@@ -1,282 +1,1776 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Temiloluwa Emmannuel</title>
-  <meta name="description" content="Minimal portfolio with blog, skills, and contact via WhatsApp" />
-  <link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg" type="image/svg+xml">
-  <style>
-    :root{
-      --bg: #ffffff;
-      --card: #fbfdfb;
-      --text: #0b1320;
-      --muted: #5b6b63;
-      --accent: #0fa57f; /* green */
-      --glass: rgba(15,165,127,0.06);
-      --shadow: 0 6px 18px rgba(11,19,32,0.06);
-      --radius: 14px;
-      --transition: 300ms cubic-bezier(.2,.9,.3,1);
-    }
-    [data-theme="dark"]{
-      --bg: #081016;
-      --card: #07121a;
-      --text: #e6f4ef;
-      --muted: #98b7a9;
-      --accent: #3bd69e;
-      --glass: rgba(255,255,255,0.03);
-      --shadow: 0 8px 26px rgba(0,0,0,0.6);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background:linear-gradient(180deg,var(--bg),var(--card));
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      transition:background var(--transition), color var(--transition);
-      line-height:1.45;
-      padding:32px;
-    }
-    .wrap{max-width:1100px;margin:0 auto}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BudgetMate - Master Your Money, Effortlessly</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header{
-      display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px
-    }
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:48px;height:48px;border-radius:12px;background:var(--glass);display:grid;place-items:center;font-weight:700;color:var(--accent);box-shadow:var(--shadow);
-    }
-    .nav{display:flex;gap:18px;align-items:center}
-    .nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px;border-radius:10px;transition:all var(--transition)}
-    .nav a:hover{color:var(--text);background:var(--glass)}
-    .cta{display:inline-flex;gap:8px;align-items:center;background:linear-gradient(90deg,var(--accent),#08b987);color:#fff;padding:10px 14px;border-radius:12px;text-decoration:none;font-weight:700;box-shadow:var(--shadow)}
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --primary-light: #d1fae5;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
 
-    main{display:grid;grid-template-columns:1fr 360px;gap:28px}
-    @media (max-width:980px){main{grid-template-columns:1fr;margin-top:16px}header{flex-direction:row;}
-      .nav{display:none}
-    }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    .hero{background:var(--card);padding:28px;border-radius:var(--radius);box-shadow:var(--shadow);transition:transform var(--transition)}
-    .hero h1{margin:0;font-size:28px}
-    .sub{color:var(--muted);margin-top:8px}
-    .skills{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
-    .chip{background:transparent;border:1px solid rgba(15,165,127,0.12);padding:8px 12px;border-radius:999px;font-weight:600;color:var(--text)}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    .section{margin-top:22px}
-    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow);transition:transform var(--transition);}
-    .card:hover{transform:translateY(-6px)}
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.03;
+        }
+        .testimonials-grid.carousel {
+  position: relative;
+  overflow: hidden;
+}
+.testimonial-card {
+  display: none;
+  transition: opacity 0.5s ease-in-out;
+}
+.testimonial-card.active {
+  display: block;
+}
+.carousel-btn {
+  background: #333;
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  padding: 0 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+}
+.carousel-btn.prev {
+  left: 10px;
+}
+.carousel-btn.next {
+  right: 10px;
+}
 
-    /* Blog list */
-    .blog-list{display:flex;flex-direction:column;gap:14px}
-    .post{display:flex;gap:12px;align-items:flex-start}
-    .post .meta{font-size:13px;color:var(--muted)}
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
 
-    /* Sidebar */
-    aside{position:sticky;top:28px}
-    .profile{display:flex;gap:12px;align-items:center;padding:16px;border-radius:12px;background:linear-gradient(180deg,var(--card),transparent);box-shadow:var(--shadow)}
-    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#05a77b);display:grid;place-items:center;color:#fff;font-weight:700;font-size:22px}
-    .small{font-size:13px;color:var(--muted)}
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
 
-    /* footer */
-    footer{margin-top:32px;text-align:center;color:var(--muted)}
-    .social{display:flex;justify-content:center;gap:18px;margin-top:14px}
-    .social a{color:var(--muted);font-size:20px;transition:color var(--transition)}
-    .social a:hover{color:var(--accent)}
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            bottom: 20%;
+            right: 10%;
+            animation-delay: 7s;
+        }
 
-    /* theme toggle */
-    .toggle{background:var(--glass);border-radius:999px;padding:6px;display:inline-flex;gap:6px;align-items:center}
-    .toggle button{background:transparent;border:0;padding:6px;border-radius:999px;cursor:pointer}
+        .shape3 {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            top: 50%;
+            right: 5%;
+            animation-delay: 14s;
+        }
 
-    /* search/blog header */
-    .search{display:flex;gap:8px;align-items:center;border-radius:12px;padding:8px;background:var(--card);box-shadow:var(--shadow)}
-    input[type="search"]{background:transparent;border:0;outline:none;color:var(--text);font-weight:600}
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(90deg); }
+            50% { transform: translate(0, 100px) rotate(180deg); }
+            75% { transform: translate(-50px, 50px) rotate(270deg); }
+        }
 
-    /* subtle animations */
-    .fade-in{animation:fade .6s both}
-    @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+        /* Header with scroll effect */
+        header {
+            padding: 20px 0;
+            background: var(--light-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0);
+        }
 
-    /* simple markdown-like content for blog post page (if expanded) */
-    .prose p{color:var(--muted);margin:0 0 12px}
-  </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        header.scrolled {
+            background: rgba(248, 249, 250, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            transform: rotate(45deg);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.1); }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 25px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* Hero Section with Parallax */
+        .hero {
+            background: var(--light-gray);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 56px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--dark);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-text h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-image {
+            background: linear-gradient(135deg, #fde8d7, #f3d5c0);
+            border-radius: 30px;
+            padding: 60px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .illustration {
+            width: 100%;
+            max-width: 300px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        /* Stats Counter */
+        .stats {
+            background: var(--white);
+            padding: 60px 0;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Features Section with Interactive Cards */
+        .features {
+            padding: 100px 0;
+            background: var(--white);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            font-size: 16px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid #f3f4f6;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light), transparent);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+            border-color: var(--primary);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), #a7f3d0);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            transition: transform 0.4s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: rotateY(360deg);
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* How It Works with Timeline */
+        .how-it-works {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--white), var(--light-gray));
+        }
+
+        .steps {
+            max-width: 800px;
+            margin: 50px auto 0;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 60px;
+            bottom: 60px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            animation: slideInLeft 0.6s ease forwards;
+        }
+
+        .step:nth-child(1) { animation-delay: 0.1s; }
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(3) { animation-delay: 0.3s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .step:hover .step-number {
+            transform: scale(1.15) rotate(360deg);
+        }
+
+        .step-content {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 15px;
+            flex: 1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .step:hover .step-content {
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            transform: translateX(10px);
+        }
+
+        .step-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .step-content p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* Testimonials with Carousel */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .testimonials-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #f9fafb, var(--white));
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            border: 1px solid #e5e7eb;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .testimonial-info h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .stars {
+            color: #fbbf24;
+            font-size: 16px;
+        }
+
+        .testimonial-card p {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            font-size: 80px;
+            color: var(--primary-light);
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: Georgia, serif;
+            opacity: 0.5;
+        }
+
+        /* Newsletter with Advanced Validation */
+        .newsletter {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--light-gray), var(--white));
+            text-align: center;
+        }
+
+        .newsletter h3 {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .newsletter p {
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .newsletter-form {
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .newsletter-form input {
+            width: 100%;
+            padding: 18px 140px 18px 25px;
+            border: 2px solid #e5e7eb;
+            border-radius: 30px;
+            font-size: 15px;
+            transition: all 0.3s;
+            background: var(--white);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .newsletter-form input.error {
+            border-color: #ef4444;
+            animation: shake 0.5s;
+        }
+
+        .newsletter-form input.success {
+            border-color: var(--primary);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .newsletter-form button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            padding: 13px 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateX(-2px);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .newsletter-form button:active {
+            transform: scale(0.95);
+        }
+
+        .newsletter-form button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 15px;
+            font-size: 14px;
+            min-height: 20px;
+            transition: all 0.3s;
+        }
+
+        .form-message.success {
+            color: var(--primary);
+        }
+
+        .form-message.error {
+            color: #ef4444;
+        }
+
+        .email-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            margin-top: -15px;
+            padding: 15px 20px 10px;
+            display: none;
+            z-index: 10;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .email-suggestions.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .suggestion-item {
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--gray);
+            transition: all 0.2s;
+        }
+
+        .suggestion-item:hover {
+            background: var(--primary-light);
+            color: var(--primary-dark);
+        }
+
+        /* CTA Section with Gradient */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-light), #a7f3d0);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent);
+            top: -200px;
+            right: -200px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .cta p {
+            font-size: 18px;
+            color: #374151;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .cta .btn {
+            position: relative;
+        }
+
+        /* Price Cards */
+        .pricing {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+
+        .price-card {
+            background: var(--white);
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .price-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .price-badge {
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .price-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .price span {
+            font-size: 18px;
+            color: var(--gray);
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 12px 0;
+            color: var(--gray);
+            font-size: 14px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, var(--light-gray), #e5e7eb);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .footer-about p {
+            color: var(--gray);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #d1d5db;
+        }
+
+        .copyright {
+            color: #9ca3af;
+            font-size: 14px;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero-content, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .features-grid, .testimonials-grid, .stats-grid, .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .newsletter-form input {
+                padding: 18px 25px;
+                margin-bottom: 15px;
+            }
+
+            .newsletter-form button {
+                position: static;
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
-<body data-theme="light">
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">TEO</div>
-        <div>
-          <div style="font-weight:800">Temiloluwa Emmannuel</div>
-          <div class="small">Frontend & Web Developer</div>
-        </div>
-      </div>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+    </div>
 
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#whyhire">Why Hire Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#blog">Blog</a>
-        <a href="#contact">Contact</a>
-      </nav>
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
 
-      <div style="display:flex;gap:12px;align-items:center">
-        <div class="toggle" aria-hidden>
-          <button id="themeBtn" title="Toggle theme">☼</button>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="logo-icon"></div>
+                    BudgetMate
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+                <button class="btn btn-primary" onclick="openLoginSignup()">Login / Sign Up</button>
+            </nav>
         </div>
-        <a class="cta" href="https://wa.me/2349041158490?text=Hi%20there!%20I%27d%20like%20to%20work%20with%20you." target="_blank" rel="noopener noreferrer">Text me</a>
-      </div>
     </header>
 
-    <main>
-      <section>
-        <div class="hero fade-in">
-          <h1>Hi — I’m <span style="color:var(--accent)">Temiloluwa Emmannuel</span></h1>
-          <p class="sub">I build clean, accessible, and fast web experiences. I focus on minimal design, good performance, and delightful interactions.</p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Master Your Money, <span>Effortlessly</span></h1>
+                    <p>BudgetMate is your all-in-one solution for tracking expenses, setting budgets, and achieving your financial goals. Take control of your finances with our intuitive and powerful app.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="scrollToCTA()">Get Started</button>
+                        <button class="btn btn-secondary">Download App</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <svg class="illustration" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="50" y="150" width="200" height="120" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+                        <rect x="70" y="170" width="160" height="80" rx="5" fill="#f3f4f6"/>
+                        <circle cx="120" cy="100" r="30" fill="#10b981" opacity="0.3"/>
+                        <circle cx="120" cy="100" r="20" fill="#10b981"/>
+                        <path d="M115 100 L118 103 L125 96" stroke="#fff" stroke-width="2" fill="none"/>
+                        <rect x="200" y="60" width="15" height="80" rx="7" fill="#6b7280"/>
+                        <ellipse cx="207" cy="50" rx="12" ry="20" fill="#059669"/>
+                        <path d="M100 50 Q110 40 115 50 Q120 60 125 50 Q130 40 140 50" stroke="#059669" stroke-width="3" fill="none"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
 
-          <div class="section">
-            <h3 style="margin:0 0 8px 0">Featured Projects</h3>
-            <div class="cards">
-              <article class="card">
-                <h4 style="margin:0">Hospital Management System</h4>
-                <p class="small">Hospital Management System – A digital platform built with HTML, CSS, JavaScript, and MongoDB, deployed on Render. It was developed to replace outdated paper-based processes, reducing financial loss, appointment errors, ward misplacements, and equipment miscounts. The system introduces a modern digital workflow that improves efficiency for hospitals and provides patients with a more reliable healthcare experience, while also showcasing the hospital’s ability to handle advanced medical cases.</p>
-              </article>
-              <article class="card">
-                <h4 style="margin:0">Home Decor Management System</h4>
-                <p class="small">Home Decor Management System – A web-based solution designed with HTML, CSS, JavaScript, and MongoDB to simplify interior design and decor planning. It helps users manage decor items, track budgets, and visualize design layouts digitally, moving away from scattered manual processes. The system reduces errors, ensures better inventory control, and provides clients with a more professional, organized, and enjoyable decor experience. </p>
-            <a class="cta" href="https://darkmonarch123.github.io/index.html/" target="_blank" rel="noopener noreferrer">view preview</a>
+    <section class="stats">
+        <div class="container">
+        <h1 style="text-align:center; margin-bottom: 40px; color: var(--dark);">Our Impressive Statistics</h1>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50000">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="2000000">0</div>
+                    <div class="stat-label">Transactions Tracked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="95">0</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="154">0</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Powerful Features to Simplify Your Finances</h2>
+                <p>BudgetMate offers a range of features designed to help you manage your money effectively and achieve your financial aspirations.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Expense Tracking</h3>
+                    <p>Easily log your expenses and categorize them for better insights into your spending habits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Smart Insights</h3>
+                    <p>Receive personalized insights and recommendations to optimize your budget and savings.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Budget Goals</h3>
+                    <p>Set realistic budget goals and track your progress in real-time to stay on top of your finances.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Shared Expenses</h3>
+                    <p>Collaborate with family or roommates to manage shared expenses and split bills effortlessly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analytics</h3>
+                    <p>Visualize your financial data with interactive charts and reports to understand your financial health.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Savings Goals</h3>
+                    <p>Set and track savings goals for your next big purchase, vacation, or investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How It Works</h2>
+                <p>Getting started with BudgetMate is as easy as 1-2-3-4.</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Sign Up</h3>
+                        <p>Create your BudgetMate account in minutes. Quick, easy, and secure registration process.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Add Expenses</h3>
+                        <p>Log your daily expenses and categorize them. Our smart categorization makes it effortless.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Set Savings Goals</h3>
+                        <p>Define your financial goals and set up savings targets. Track progress with visual indicators.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Track Progress</h3>
+                        <p>Monitor your progress and adjust your strategy as needed. Get insights and achieve your goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Choose Your Plan</h2>
+                <p>Select the perfect plan for your financial journey</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Basic</h3>
+                    <div class="price">$0.00<span>/month</span></div>
+                    <ul class="price-features">
+                        <li>Track up to 50 expenses</li>
+                        <li>Basic budgeting tools</li>
+                        <li>Monthly reports</li>
+                        <li>Email support</li>
+                    </ul>
+                    <button class="btn btn-secondary" style="width: 100%;" >Get Started</button>
+                </div>
+                <div class="price-card featured">
+                    <div class="price-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$9.99<span>/month</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited expenses</li>
+                        <li>Advanced analytics</li>
+                        <li>Custom categories</li>
+                        <li>Priority support</li>
+                        <li>Export reports</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">Get Started</button>
+                </div>
+                <div class="price-card"> 
+                    <h3>Premium</h3>
+                    <div class="price">$19.99<span>/month</span></div>
+                    <ul class="price-features">
+                        <li>Everything in Pro</li>
+                        <li>Multi-user access</li>
+                        <li>Investment tracking</li>
+                        <li>Financial advisor chat</li>
+                        <li>Custom integrations</li>
+                    </ul>
+                    <button class="btn btn-secondary" style="width: 100%;">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="testimonials" class="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <h3>Testimonials Carousel</h3>
+      <h2>What Our Users Say</h2>
+      <p>Don't just take our word for it - hear from our satisfied users</p>
+    </div>
+    <div class="testimonials-container">
+      <div class="testimonials-grid carousel">
+        <div class="testimonial-card active">
+          <div class="testimonial-header">
+            <div class="avatar">SC</div>
+            <div class="testimonial-info">
+              <h4>Sophia Carter</h4>
+              <div class="stars">★★★★★</div>
             </div>
           </div>
-
-          <div id="skills" class="section">
-            <h3 style="margin:0 0 8px 0">Skills</h3>
-            <div class="skills">
-              <span class="chip">HTML</span>
-              <span class="chip">CSS</span>
-              <span class="chip">JavaScript</span>
-              <span class="chip">React</span>
-              <span class="chip">Tailwind</span>
-              <span class="chip">Node.js</span>
-              <span class="chip">Git</span>
-                <span class="chip">Figma</span>
-                <span class="chip">Java</span>
-                <span class="chip">BootStrap</span>
+          <p>"BudgetMate has completely transformed the way I manage my finances. It's intuitive, user-friendly, and has helped me save more than I ever thought possible. Highly recommend!"</p>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="avatar">OS</div>
+            <div class="testimonial-info">
+              <h4>oxala scott</h4>
+              <div class="stars">★★★★★</div>
             </div>
           </div>
-
-          <div id="whyhire" class="section card fade-in">
-            <h3 style="margin:0 0 8px 0">Why Hire Me?</h3>
-            <p class="small">I don’t just write code — I solve problems. My focus is on building products that are not only functional but also intuitive and enjoyable for people to use.</p>
-            <p class="small">I communicate clearly, adapt quickly, and care about details. Whether it’s collaborating with a team or working independently, I stay committed to delivering quality work on time.</p>
-            <p class="small">Most importantly, I approach every project with curiosity and a growth mindset. If I don’t know something today, I’ll learn it by tomorrow to make sure your vision is achieved.</p>
-          </div>
-
+          <p>"Budgetmate has help achieve goals , i didnt think i could have gotten!!!, use it Everyday </p>
         </div>
-
-        <div id="blog" class="section">
-          <h3>Latest Posts</h3>
-          <div class="blog-list">
-            <article class="post card">
-              <div style="flex:1">
-                <a href="#" style="font-weight:800;color:var(--text);text-decoration:none">How I structure a small web project</a>
-                <div class="meta">Sep 1, 2025 · 5 min read</div>
-                <p class="small" style="margin-top:8px">An approachable guide for setting up a project with good defaults for performance and accessibility.</p>
-              </div>
-            </article>
-
-            <article class="post card">
-              <div style="flex:1">
-                <a href="#" style="font-weight:800;color:var(--text);text-decoration:none">Design tokens for tiny teams</a>
-                <div class="meta">Aug 21, 2025 · 3 min read</div>
-                <p class="small" style="margin-top:8px">How to use CSS variables and smart defaults to keep your UI consistent.</p>
-              </div>
-            </article>
-          </div>
-        </div>
-
-      </section>
-
-      <aside>
-        <div class="profile fade-in">
-          <div class="avatar">TEO</div>
-          <div>
-            <div style="font-weight:800">Temiloluwa Emmanuel</div>
-            <div class="small">Frontend Developer · Open to work</div>
-            <div style="margin-top:10px">
-              <a class="cta" href="https://wa.me/2349041158490?text=Hi%20I%27d%20like%20to%20talk%20about%20a%20project" target="_blank" rel="noopener noreferrer" style="padding:8px 10px;font-size:14px">Contact on WhatsApp</a>
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="avatar">EB</div>
+            <div class="testimonial-info">
+              <h4>Ethan Bennett</h4>
+              <div class="stars">★★★★☆</div>
             </div>
           </div>
+          <p>"I've been using BudgetMate for a few months now, and it's been a great tool for tracking my expenses and staying on budget. The insights are helpful, and the app is easy to use!"</p>
         </div>
+      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
+    </div>
+  </div>
+</section>
+    <section class="newsletter">
+        <div class="container">
+            <h3>Subscribe to Our Newsletter</h3>
+            <p>Get the latest tips, updates, and exclusive offers delivered to your inbox</p>
+            <form class="newsletter-form" id="newsletterForm">
+                <div class="input-wrapper">
+                    <input 
+                        type="email" 
+                        id="emailInput" 
+                        placeholder="Enter your email address" 
+                        autocomplete="email"
+                        required
+                    >
+                    <div class="email-suggestions" id="emailSuggestions"></div>
+                </div>
+                <button type="submit" id="submitBtn">
+                    <span id="btnText">Subscribe</span>
+                </button>
+                <div class="form-message" id="formMessage"></div>
+            </form>
+        </div>
+    </section>
 
-        <div class="section card">
-          <h4 style="margin:0 0 8px 0">Contact</h4>
-          <p class="small">Prefer WhatsApp? Tap the button below to message me directly.</p>
-          <div style="margin-top:10px">
-            <a class="cta" href="https://wa.me/2349041158490?text=Hello%20there!" target="_blank" rel="noopener noreferrer">Start Chat</a>
-          </div>
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Take Control of Your Finances?</h2>
+            <p>Join thousands of users who are already mastering their money with BudgetMate. Download the app today and start your journey towards financial freedom.</p>
+            <button class="btn btn-primary" style="padding: 15px 40px; font-size: 16px;">Download App Now</button>
         </div>
-
-        <div class="section card">
-          <h4 style="margin:0 0 8px 0">Download CV</h4>
-          <p class="small">link to my CV </p>
-          <div style="margin-top:10px">
-            <a class="chip" href="#">Download</a>
-          </div>
-        </div>
-      </aside>
-    </main>
+    </section>
 
     <footer>
-      <div class="small">© <span id="year"></span> Temiloluwa Emmanuel — Built with care. • <a href="#" style="color:var(--muted)">Privacy</a></div>
-      <div class="social">
-        <a href="https://github.com/darkmonarch123" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://wa.me/2349041158490" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-      </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>BudgetMate</h3>
+                    <p>Your trusted partner in financial management. Making money management simple, intuitive, and effective for everyone.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">f</a>
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#getstarted">Download</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press Kit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 BudgetMate. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // set year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // theme persistence
-    const root = document.documentElement;
-    const body = document.body;
-    const themeBtn = document.getElementById('themeBtn');
-    const stored = localStorage.getItem('theme');
-    if(stored) body.setAttribute('data-theme', stored);
-    function toggleTheme(){
-      const cur = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      body.setAttribute('data-theme', cur);
-      localStorage.setItem('theme', cur);
-      themeBtn.textContent = cur === 'dark' ? '☾' : '☼';
+    <script>
+        // Login / Sign Up button action (placeholder)
+    function openLoginSignup() {
+        alert('Implement login / sign up modal or navigation.');
     }
-    themeBtn.addEventListener('click', toggleTheme);
-    // set initial icon
-    themeBtn.textContent = body.getAttribute('data-theme') === 'dark' ? '☾' : '☼';
+        // Header scroll effect
+        const header = document.getElementById('header');
+        const scrollTop = document.getElementById('scrollTop');
 
-    // simple keyboard shortcut: t => toggle theme
-    window.addEventListener('keydown', (e)=>{ if(e.key.toLowerCase()==='t') toggleTheme(); });
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+                scrollTop.classList.add('show');
+            } else {
+                header.classList.remove('scrolled');
+                scrollTop.classList.remove('show');
+            }
+        });
 
-    // Smooth scroll for nav
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const href = a.getAttribute('href');
-        if(href.startsWith('#')){
-          e.preventDefault();
-          const el = document.querySelector(href);
-          if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+        document.addEventListener('DOMContentLoaded', function () {
+  const cards = document.querySelectorAll('.testimonials-grid.carousel .testimonial-card');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  let current = 0;
+  const total = cards.length;
+
+  function showCard(index) {
+    cards.forEach(card => card.classList.remove('active'));
+    cards[index].classList.add('active');
+  }
+
+  function nextCard() {
+    current = (current + 1) % total;
+    showCard(current);
+  }
+
+  function prevCard() {
+    current = (current - 1 + total) % total;
+    showCard(current);
+  }
+
+  prevBtn.addEventListener('click', prevCard);
+  nextBtn.addEventListener('click', nextCard);
+
+  // Auto slide every 5 seconds
+  setInterval(nextCard, 5000);
+
+  // Show the first card initially
+  showCard(current);
+});
+
+
+        // Scroll to top
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let animated = false;
+
+        const animateStats = () => {
+            if (animated) return;
+            
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        stat.textContent = target.toLocaleString() + (target === 95 ? '%' : '');
+                    }
+                };
+
+                updateCounter();
+            });
+            
+            animated = true;
+        };
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelector('.stats') && statsObserver.observe(document.querySelector('.stats'));
+
+        // Advanced Email validation with suggestions
+        const form = document.getElementById('newsletterForm');
+        const emailInput = document.getElementById('emailInput');
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const emailSuggestions = document.getElementById('emailSuggestions');
+
+        const commonDomains = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'icloud.com'];
+        
+        // Real-time email validation
+        emailInput.addEventListener('input', function() {
+            emailInput.classList.remove('error', 'success');
+            formMessage.textContent = '';
+            formMessage.className = 'form-message';
+            emailSuggestions.classList.remove('show');
+            
+            const email = this.value.trim();
+            if (email && email.includes('@')) {
+                const parts = email.split('@');
+                if (parts.length === 2 && parts[1]) {
+                    const domain = parts[1].toLowerCase();
+                    const suggestions = commonDomains.filter(d => 
+                        d.startsWith(domain) && d !== domain
+                    );
+                    
+                    if (suggestions.length > 0 && domain.length >= 2) {
+                        showSuggestions(parts[0], suggestions);
+                    }
+                }
+            }
+        });
+
+        function showSuggestions(username, domains) {
+            emailSuggestions.innerHTML = domains.map(domain => 
+                `<div class="suggestion-item" onclick="selectSuggestion('${username}@${domain}')">
+                    ${username}@${domain}
+                </div>`
+            ).join('');
+            emailSuggestions.classList.add('show');
         }
-      })
-    });
 
-    console.log('Portfolio loaded — WhatsApp contact: +2349041158490');
-  </script>
+        function selectSuggestion(email) {
+            emailInput.value = email;
+            emailSuggestions.classList.remove('show');
+            emailInput.focus();
+        }
+
+        // Click outside to close suggestions
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.newsletter-form')) {
+                emailSuggestions.classList.remove('show');
+            }
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            // Enhanced email validation
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            
+            // Check for empty field
+            if (!email) {
+                showMessage('Please enter your email address', 'error');
+                emailInput.classList.add('error');
+                return;
+            }
+            
+            // Check email format
+            if (!emailRegex.test(email)) {
+                showMessage('Please enter a valid email address', 'error');
+                emailInput.classList.add('error');
+                return;
+            }
+            
+            // Check for common typos
+            const parts = email.split('@');
+            if (parts.length === 2) {
+                const domain = parts[1].toLowerCase();
+                const commonTypos = {
+                    'gmial.com': 'gmail.com',
+                    'gmai.com': 'gmail.com',
+                    'yahooo.com': 'yahoo.com',
+                    'yaho.com': 'yahoo.com',
+                    'outlok.com': 'outlook.com'
+                };
+                
+                if (commonTypos[domain]) {
+                    showMessage(`Did you mean ${parts[0]}@${commonTypos[domain]}?`, 'error');
+                    emailInput.classList.add('error');
+                    return;
+                }
+            }
+            
+            // Check for disposable email domains
+            const disposableDomains = ['tempmail.com', 'throwaway.email', '10minutemail.com'];
+            if (disposableDomains.some(d => email.endsWith(d))) {
+                showMessage('Please use a permanent email address', 'error');
+                emailInput.classList.add('error');
+                return;
+            }
+            
+            // Simulate API call
+            submitBtn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span>';
+            
+            // Simulate network delay
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            // Success
+            emailInput.classList.remove('error');
+            emailInput.classList.add('success');
+            showMessage('🎉 Thank you for subscribing! Check your inbox for confirmation.', 'success');
+            emailInput.value = '';
+            emailInput.classList.remove('success');
+            
+            submitBtn.disabled = false;
+            btnText.textContent = 'Subscribe';
+            
+            // Reset after 5 seconds
+            setTimeout(() => {
+                formMessage.textContent = '';
+                formMessage.className = 'form-message';
+            }, 5000);
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+        }
+
+        function scrollToCTA() {
+            document.querySelector('.cta').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const fadeInObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    fadeInObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .testimonial-card, .price-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeInObserver.observe(el);
+        });
+
+        // Parallax effect for hero image
+        window.addEventListener('scroll', () => {
+            const heroImage = document.querySelector('.hero-image');
+            if (heroImage) {
+                const scrolled = window.pageYOffset;
+                heroImage.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        // Keyboard accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                emailSuggestions.classList.remove('show');
+            }
+        });
+
+        // Form validation on blur
+        emailInput.addEventListener('blur', function() {
+            const email = this.value.trim();
+            if (email && !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+                this.classList.add('error');
+                showMessage('Please enter a valid email format', 'error');
+            }
+        });
+
+            // Testimonials carousel logic
+    const carousel = document.querySelector('.testimonials-carousel');
+    let currentIndex = 0;
+    const totalItems = carousel.children.length;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carousel.style.transform = `translateX(${offset}%)`;
+    }
+
+    function prevTestimonial() {
+        currentIndex = (currentIndex === 0) ? totalItems - 1 : currentIndex - 1;
+        updateCarousel();
+    }
+
+    function nextTestimonial() {
+        currentIndex = (currentIndex === totalItems - 1) ? 0 : currentIndex + 1;
+        updateCarousel();
+    }
+
+        // Mobile menu toggle (placeholder)
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        mobileMenuBtn && mobileMenuBtn.addEventListener('click', () => {
+            alert('Mobile menu functionality - connect to your mobile menu implementation');
+        });
+    </script>
 </body>
 </html>
